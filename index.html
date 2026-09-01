@@ -1542,6 +1542,9 @@ const{useState,useEffect,useRef,useCallback,useMemo}=React,HomeIcon=()=>React.cr
     var all=document.querySelectorAll("button,a[role='button'],input[type='button']");
     for(var i=0;i<all.length;i++){
       var t=(all[i].textContent||all[i].value||"").replace(/\s+/g,"");
+      // [수정] 녹음·재생 등 활동 중 버튼에는 붙지 않게 합니다.
+      if (all[i].id === "__gearInline") continue;
+      if (/녹음|재생|다시|멈춤|정지|중지|듣기|들어보기|말하기|따라/.test(t)) continue;
       if(/시작하기|시작|출발|입장하기|들어가기/.test(t)) return all[i];
     }
     return null;
